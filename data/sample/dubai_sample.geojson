@@ -1,0 +1,30 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {"name": "Dubai Mall", "type": "shopping"},
+      "geometry": {"type": "Point", "coordinates": [55.2798, 25.1972]}
+    },
+    {
+      "type": "Feature",
+      "properties": {"name": "Burj Khalifa", "type": "landmark"},
+      "geometry": {"type": "Point", "coordinates": [55.2744, 25.1972]}
+    },
+    {
+      "type": "Feature",
+      "properties": {"name": "Dubai Marina", "type": "residential"},
+      "geometry": {"type": "Point", "coordinates": [55.1384, 25.0806]}
+    },
+    {
+      "type": "Feature",
+      "properties": {"name": "Jumeirah Beach Residence", "type": "residential"},
+      "geometry": {"type": "Point", "coordinates": [55.1375, 25.0777]}
+    },
+    {
+      "type": "Feature",
+      "properties": {"name": "Downtown Dubai", "type": "mixed"},
+      "geometry": {"type": "Point", "coordinates": [55.2756, 25.1920]}
+    }
+  ]
+}

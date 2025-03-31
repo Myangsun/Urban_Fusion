@@ -1,29 +1,159 @@
-# Urban Fusion
+"""
+UrbanFusion Prototype - README
+This file provides documentation for the UrbanFusion prototype
+"""
 
-## Introduction
+# UrbanFusion Prototype
 
-Urban Fusion is a multi-agent AI framework designed to enhance participatory urban decision-making by integrating diverse urban datasets. Modern cities generate vast data streams, including citizen engagement data (e.g., 311 service requests, social media) and geospatial information (e.g., GIS maps, satellite imagery). However, traditional urban analytics often isolate these data modalities, limiting the ability to develop holistic, data-driven policies.
+## Overview
 
-This research addresses the challenge of integrating multimodal urban data to support decision-makers in understanding complex urban dynamics. By fusing citizen engagement data with geospatial insights, Urban Fusion aims to provide actionable insights for urban planners and policymakers.
+UrbanFusion is a multimodal geo-agent framework designed for urban site selection in Dubai. The system leverages large language models (LLMs) and vision-language models (VLMs) to process diverse data types and employ reasoning capabilities through tool usage and code generation.
 
-## Key Features
+This prototype implements the core components of the UrbanFusion framework using LangChain for the agent framework, providing a foundation for multimodal data integration and constraint-driven site selection.
 
-- **Multimodal Fusion**: Integrates textual and geospatial data to create context-aware models that assist in urban planning.
-- **Agent Coordination**: Employs specialized agents for different data modalities, ensuring effective communication and synthesis of information.
-- **Participatory Planning**: Facilitates interactive decision-making by summarizing community feedback and generating policy recommendations.
+## Components
 
-## Research Significance
+The prototype consists of the following components:
 
-Urban Fusion enhances urban analytics by:
+1. **Agent Framework** (`urban_fusion.py`): Implements the LangChain-based agent framework with specialized agents:
+   - Coordinator Agent: Manages agent registration, invocation, and collaboration
+   - GeoAgent: Handles geospatial queries and analysis
+   - Constraints Agent: Enforces and evaluates constraints
+   - Evaluation Agent: Validates results against benchmarks
+   - Explanation Agent: Generates interpretable explanations
 
-- Identifying critical patterns and issues through integrated data analysis.
-- Fostering transparent and inclusive decision-making processes.
-- Developing robust AI-driven urban governance models that are responsive to community needs.
+2. **Multimodal Database** (`multimodal_database.py`): Implements a multimodal embedding database that integrates diverse data types:
+   - GIS Data: Spatial information including boundaries, road networks, and existing facilities
+   - CSV Data: Structured data such as financial metrics, demographic statistics, and order volumes
+   - Image Data: Satellite imagery, street views, and visual representations of urban patterns
 
-## Planned Execution
+3. **Data Processor** (`data_processor.py`): Implements data processing functionality for analyzing and visualizing data:
+   - Processing order data to extract insights
+   - Creating heatmaps and visualizations
+   - Analyzing constraints and calculating metrics
 
-The project will utilize open-source datasets, including 311 service requests and GIS layers, to validate the framework. Key metrics will assess the effectiveness of the AI agents in providing actionable insights for urban challenges.
+4. **Main Application** (`app.py`): Implements the main application that ties everything together:
+   - Processing user queries
+   - Analyzing data
+   - Evaluating locations against constraints
+   - Running demonstrations
 
-## Conclusion
+5. **Environment Setup** (`setup.py`): Sets up the environment for the UrbanFusion system:
+   - Creating necessary directories
+   - Setting up environment variables
 
-Urban Fusion represents a significant step towards integrating citizen-reported data with geospatial context, enabling participatory, location-aware urban decision-making. By leveraging AI, this framework aims to transform urban governance and enhance community engagement in the planning process.
+6. **Testing Module** (`test_urban_fusion.py`): Implements testing functionality for the UrbanFusion system:
+   - Functional tests for components
+   - Unit tests for specific functionality
+   - Integration tests for query processing
+
+## Installation
+
+1. Clone the repository
+2. Install the required dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+3. Set up the environment:
+   ```
+   python setup.py
+   ```
+4. Add your OpenAI API key to the `.env` file:
+   ```
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
+
+## Usage
+
+### Running the Application
+
+To run the UrbanFusion application:
+
+```python
+from app import UrbanFusionApp
+
+app = UrbanFusionApp()
+app.run_demo()
+```
+
+### Processing a Query
+
+To process a specific query:
+
+```python
+from app import UrbanFusionApp
+
+app = UrbanFusionApp()
+result = app.process_query("Find optimal restaurant locations in Dubai with delivery radius of 3km, near residential areas, with low competition for Italian cuisine")
+print(result)
+```
+
+### Analyzing Data
+
+To analyze data:
+
+```python
+from app import UrbanFusionApp
+
+app = UrbanFusionApp()
+result = app.analyze_data("path/to/your/data.csv")
+print(result)
+```
+
+### Evaluating Locations
+
+To evaluate locations against constraints:
+
+```python
+from app import UrbanFusionApp
+
+app = UrbanFusionApp()
+
+locations = [
+    {"lat": 25.2048, "lng": 55.2708, "rent": 5000, "competition_count": 3, "score": 0.8},
+    {"lat": 25.2200, "lng": 55.3000, "rent": 7000, "competition_count": 1, "score": 0.9}
+]
+
+constraints = {
+    "max_rent": 6000,
+    "max_competition": 4
+}
+
+result = app.evaluate_locations(locations, constraints)
+print(result)
+```
+
+## Testing
+
+To run the tests:
+
+```
+python test_urban_fusion.py
+```
+
+## Architecture
+
+The UrbanFusion system is implemented as a directed graph G = (V, E), where vertices V represent agents and tools, and edges E represent information flow between components.
+
+The system follows a hierarchical approach to multimodal fusion:
+
+```
+Efused = F(EGIS, ECSV, Eimage, Edoc)
+```
+
+where E represents embeddings of different modalities and F is a fusion function that aligns and combines these embeddings into a unified representation.
+
+## Future Work
+
+Future enhancements to the prototype could include:
+
+1. Implementing a more sophisticated multimodal fusion approach
+2. Adding support for more data types and sources
+3. Enhancing the constraint resolution mechanism
+4. Improving the explanation generation capabilities
+5. Implementing cross-city transfer learning
+6. Adding support for collaborative multi-stakeholder planning
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
