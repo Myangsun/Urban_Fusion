@@ -1,8 +1,3 @@
-"""
-UrbanFusion Prototype - README
-This file provides documentation for the UrbanFusion prototype
-"""
-
 # UrbanFusion Prototype
 
 ## Overview
@@ -16,6 +11,7 @@ This prototype implements the core components of the UrbanFusion framework using
 The prototype consists of the following components:
 
 1. **Agent Framework** (`urban_fusion.py`): Implements the LangChain-based agent framework with specialized agents:
+
    - Coordinator Agent: Manages agent registration, invocation, and collaboration
    - GeoAgent: Handles geospatial queries and analysis
    - Constraints Agent: Enforces and evaluates constraints
@@ -23,22 +19,26 @@ The prototype consists of the following components:
    - Explanation Agent: Generates interpretable explanations
 
 2. **Multimodal Database** (`multimodal_database.py`): Implements a multimodal embedding database that integrates diverse data types:
+
    - GIS Data: Spatial information including boundaries, road networks, and existing facilities
    - CSV Data: Structured data such as financial metrics, demographic statistics, and order volumes
    - Image Data: Satellite imagery, street views, and visual representations of urban patterns
 
 3. **Data Processor** (`data_processor.py`): Implements data processing functionality for analyzing and visualizing data:
+
    - Processing order data to extract insights
    - Creating heatmaps and visualizations
    - Analyzing constraints and calculating metrics
 
 4. **Main Application** (`app.py`): Implements the main application that ties everything together:
+
    - Processing user queries
    - Analyzing data
    - Evaluating locations against constraints
    - Running demonstrations
 
 5. **Environment Setup** (`setup.py`): Sets up the environment for the UrbanFusion system:
+
    - Creating necessary directories
    - Setting up environment variables
 
@@ -63,91 +63,11 @@ The prototype consists of the following components:
    OPENAI_API_KEY=your_openai_api_key_here
    ```
 
-## Usage
-
-### Running the Application
-
-To run the UrbanFusion application:
-
-```python
-from app import UrbanFusionApp
-
-app = UrbanFusionApp()
-app.run_demo()
-```
-
-### Processing a Query
-
-To process a specific query:
-
-```python
-from app import UrbanFusionApp
-
-app = UrbanFusionApp()
-result = app.process_query("Find optimal restaurant locations in Dubai with delivery radius of 3km, near residential areas, with low competition for Italian cuisine")
-print(result)
-```
-
-### Analyzing Data
-
-To analyze data:
-
-```python
-from app import UrbanFusionApp
-
-app = UrbanFusionApp()
-result = app.analyze_data("path/to/your/data.csv")
-print(result)
-```
-
-### Evaluating Locations
-
-To evaluate locations against constraints:
-
-```python
-from app import UrbanFusionApp
-
-app = UrbanFusionApp()
-
-locations = [
-    {"lat": 25.2048, "lng": 55.2708, "rent": 5000, "competition_count": 3, "score": 0.8},
-    {"lat": 25.2200, "lng": 55.3000, "rent": 7000, "competition_count": 1, "score": 0.9}
-]
-
-constraints = {
-    "max_rent": 6000,
-    "max_competition": 4
-}
-
-result = app.evaluate_locations(locations, constraints)
-print(result)
-```
-
-## Testing
-
-To run the tests:
-
-```
-python test_urban_fusion.py
-```
-
-## Architecture
-
-The UrbanFusion system is implemented as a directed graph G = (V, E), where vertices V represent agents and tools, and edges E represent information flow between components.
-
-The system follows a hierarchical approach to multimodal fusion:
-
-```
-Efused = F(EGIS, ECSV, Eimage, Edoc)
-```
-
-where E represents embeddings of different modalities and F is a fusion function that aligns and combines these embeddings into a unified representation.
-
 ## Future Work
 
 Future enhancements to the prototype could include:
 
-1. Implementing a more sophisticated multimodal fusion approach
+1. Implementing multimodal fusion approach
 2. Adding support for more data types and sources
 3. Enhancing the constraint resolution mechanism
 4. Improving the explanation generation capabilities

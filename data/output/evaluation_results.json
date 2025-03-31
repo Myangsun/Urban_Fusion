@@ -1,0 +1,27 @@
+{
+  "filtered_locations": [
+    {
+      "lat": 25.2048,
+      "lng": 55.2708,
+      "rent": 5000,
+      "competition_count": 3,
+      "score": 0.8,
+      "delivery_radius_check": true
+    },
+    {
+      "lat": 25.18,
+      "lng": 55.25,
+      "rent": 4500,
+      "competition_count": 2,
+      "score": 0.7,
+      "delivery_radius_check": true
+    }
+  ],
+  "metrics": {
+    "total_locations": 4,
+    "filtered_locations": 2,
+    "pass_rate": 0.5,
+    "avg_score": 0.75
+  },
+  "visualization": "data/output/location_map.html"
+}
