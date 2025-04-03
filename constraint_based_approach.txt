@@ -1,0 +1,161 @@
+# Constraint-Based Site Selection Approach
+
+## Overview
+This document outlines the constraint-based site selection approach for the UrbanFusion system, focusing on identifying locations that meet specific constraints rather than optimizing for "best" locations.
+
+## Constraint Categories
+
+### 1. Geospatial Constraints
+- **Proximity**: Distance-based constraints (e.g., within 3km of city center)
+- **Zoning**: Land use requirements (e.g., commercial zones only)
+- **Adjacency**: Proximity to specific features (e.g., green zones, arterial roads)
+- **Visibility**: Physical visibility requirements (e.g., minimum street frontage)
+
+### 2. Temporal Constraints
+- **Peak Hours**: Time-specific requirements (e.g., lunch rush, dinner peak)
+- **Seasonality**: Seasonal variations (e.g., summer demand, Ramadan hours)
+
+### 3. Economic Constraints
+- **Cost**: Financial limitations (e.g., maximum rent, delivery cost ratio)
+- **Revenue**: Income requirements (e.g., minimum daily GMV)
+- **ROI**: Return on investment thresholds (e.g., minimum annual ROI)
+
+### 4. Market Constraints
+- **Competition**: Competitive landscape requirements (e.g., maximum number of similar cuisines)
+- **Demand**: Customer demand thresholds (e.g., minimum orders per day)
+
+### 5. Demographic Constraints
+- **Population Density**: Residential density requirements (e.g., minimum residents/km²)
+- **Age Group**: Target demographic requirements (e.g., 20-35 year old majority)
+- **Income Level**: Economic status requirements (e.g., minimum monthly income)
+- **Cultural**: Cultural considerations (e.g., expat-friendly zones)
+
+### 6. Operational Constraints
+- **Logistics**: Physical requirements (e.g., minimum kitchen size)
+- **Access**: Transportation requirements (e.g., 24/7 delivery access)
+- **Compliance**: Regulatory requirements (e.g., halal certification)
+
+## Implementation Approach
+
+### 1. Constraint Extraction
+- Parse user queries to identify explicit constraints
+- Categorize constraints by type (geospatial, economic, etc.)
+- Convert natural language constraints to structured parameters
+
+### 2. Constraint Representation
+- Represent constraints as key-value pairs
+- Use consistent naming conventions (e.g., `min_` prefix for minimum thresholds)
+- Support different constraint types (numeric, boolean, string)
+
+### 3. Constraint Application
+- Apply constraints sequentially or in parallel
+- Filter locations based on constraint satisfaction
+- Track which constraints are satisfied for each location
+
+### 4. Constraint Satisfaction Verification
+- Verify that all constraints are satisfied for recommended locations
+- Calculate constraint satisfaction metrics (e.g., percentage of constraints met)
+- Provide explanations for why locations meet or fail constraints
+
+## Query Processing Flow
+
+### 1. Query Analysis
+- Coordinator agent analyzes the query to identify constraints
+- Constraints are categorized and structured
+- Query is reformulated if needed for clarity
+
+### 2. Location Identification
+- GeoAgent identifies potential locations based on geospatial constraints
+- Uses spatial operations (buffer, intersection, distance calculation)
+- Generates code to perform specific spatial analyses
+
+### 3. Constraint Filtering
+- Constraints Agent applies all identified constraints
+- Filters locations to only those that satisfy all constraints
+- Ranks locations by constraint satisfaction if multiple locations qualify
+
+### 4. Result Validation
+- Evaluation Agent validates that results meet all constraints
+- Calculates metrics on constraint satisfaction
+- Ensures results are complete and accurate
+
+### 5. Explanation Generation
+- Explanation Agent generates detailed explanations
+- Clarifies which constraints each location satisfies
+- Provides transparency into the decision-making process
+
+## Example Constraint-Based Queries
+
+### Example 1: Restaurant Location with Multiple Constraints
+```
+Find restaurant locations in Dubai with a delivery radius of 3km of Dubai's city center, 
+in residential areas, with less than 2 Italian cuisines in a 5km radius.
+```
+
+**Extracted Constraints:**
+- Geospatial/Proximity: Within 3km of Dubai's city center
+- Geospatial/Zoning: In residential areas
+- Market/Competition: Less than 2 Italian cuisines in a 5km radius
+
+### Example 2: Commercial Property with Specific Requirements
+```
+Find commercial properties in Business Bay with at least 150 square meters, 
+street frontage of at least 20m, and near arterial roads.
+```
+
+**Extracted Constraints:**
+- Geospatial/Location: In Business Bay district
+- Geospatial/Zoning: Commercial properties only
+- Operational/Size: Minimum 150 square meters
+- Geospatial/Visibility: Minimum 20m street frontage
+- Geospatial/Proximity: Near arterial roads
+
+### Example 3: Restaurant with Economic and Demographic Constraints
+```
+Find locations for a premium restaurant in areas with average income above 25,000 AED/month, 
+with rent below 200 AED/m², and at least 100 orders per day potential.
+```
+
+**Extracted Constraints:**
+- Demographic/Income: Average income > 25,000 AED/month
+- Economic/Cost: Rent < 200 AED/m²
+- Market/Demand: Minimum 100 orders per day potential
+
+## Advantages of Constraint-Based Approach
+
+### 1. Clear Criteria
+- Explicit constraints provide clear criteria for site selection
+- Results are easily verifiable against constraints
+- Reduces ambiguity in the selection process
+
+### 2. Transparent Decision-Making
+- Each constraint can be traced to specific data sources
+- Decision logic is explicit and explainable
+- Users understand why locations are included or excluded
+
+### 3. Flexible Configuration
+- Constraints can be added, removed, or modified easily
+- Different constraint combinations can be tested
+- System can adapt to changing requirements
+
+### 4. Scalable Implementation
+- Constraint checking can be parallelized
+- New constraint types can be added without changing the core architecture
+- Performance optimizations can be applied to specific constraint types
+
+## Future Enhancements
+
+### 1. Constraint Weighting
+- Allow users to specify importance of different constraints
+- Implement weighted constraint satisfaction scoring
+- Support "soft" constraints vs. "hard" constraints
+
+### 2. Constraint Relaxation
+- Automatically relax constraints if no locations satisfy all constraints
+- Suggest which constraints to relax for better results
+- Provide alternative solutions with different constraint trade-offs
+
+### 3. Constraint Inference
+- Infer implicit constraints from user queries
+- Learn common constraint patterns from usage
+- Suggest additional relevant constraints
